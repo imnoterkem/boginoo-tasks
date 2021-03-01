@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeDefault } from './pages';
+import { HomeDefault, Login, SignUp, Move } from './pages';
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,16 +7,28 @@ import {
     Link
 } from "react-router-dom";
 import './style/main.scss';
+import { AuthContext, AuthProvider } from './Provider/provider'
 
 const App = () => {
     return (
-        <Router>
-            <Switch>
-                <Route path="/" exact>
-                    <HomeDefault />
-                </Route>
-            </Switch>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <Switch>
+                    <Route path="/" exact>
+                        <HomeDefault />
+                    </Route>
+                    <Route path="/login" exact>
+                        <Login />
+                    </Route>
+                    <Route path="/signup" exact>
+                        <SignUp />
+                    </Route>
+                    <Route path="*" exact>
+                        <Move/>
+                    </Route>
+                </Switch>
+            </Router>
+        </AuthProvider>
     )
 }
 
